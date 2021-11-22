@@ -1,12 +1,8 @@
 version: 2
-executors:
-  docker-publisher:
-    docker:
-      - image: cimg/base:2021.04
-
 jobs:
   test:
-    executor: docker-publisher
+    machine:
+      image: ubuntu-2004:202008-01
     steps:
       - checkout
       - run:
