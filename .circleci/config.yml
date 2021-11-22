@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: circleci/node:14.17.3-buster-browsers
     steps:
       - checkout
       - setup_remote_docker:
