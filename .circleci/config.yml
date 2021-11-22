@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      image: cimg/base:edge-20.04
+      - image: cimg/base:edge-20.04
     steps:
       - checkout
       - run:
