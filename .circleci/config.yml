@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Run test
-          command: docker info
+          command: sudo docker-compose up test
 workflows:
   version: 2
   build-master:
