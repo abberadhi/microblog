@@ -1,13 +1,13 @@
 version: 2
 jobs:
   test:
-    docker:
-      - image: cimg/base:edge-20.04
+    machine:
+      image: ubuntu-2004:202101-01
     steps:
       - checkout
       - run:
           name: Run test
-          command: docker-compose up test
+          command: docker info
 workflows:
   version: 2
   build-master:
