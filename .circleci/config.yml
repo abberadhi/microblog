@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
-            docker build -t microblog:latest -f docker/Dockerfile_prod .
+            docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push abberadhi/microblog:latest
 
