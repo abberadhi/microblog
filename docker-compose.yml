@@ -1,12 +1,12 @@
 version: "3"
 services:
   prod:
-    image: gufo19/microblog:latest
+    image: abberadhi/microblog:latest
     container_name: microblog
     restart: always
     environment:
       - SECRET_KEY=c065e2bee1a143a7be1b0321a88bfe0c
-      - DATABASE_URL=mysql+pymysql://microblog:password123@dbserver/microblog
+      - DATABASE_URL=mysql+pymysql://microblog:password@dbserver/microblog
     depends_on:
       - "mysql"
     links:
@@ -22,7 +22,7 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_DATABASE=microblog
       - MYSQL_USER=microblog
-      - MYSQL_PASSWORD=password123
+      - MYSQL_PASSWORD=password
     volumes:
       - /home/deploy/mysql_data:/var/lib/mysql
 
