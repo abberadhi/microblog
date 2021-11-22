@@ -1,8 +1,8 @@
 version: 2
 jobs:
   test:
-    machine:
-      image: ubuntu-2004:202101-01
+    docker:
+      image: cimg/base:edge-20.04
     steps:
       - checkout
       - run:
