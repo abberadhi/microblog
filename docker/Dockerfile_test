@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.8
 
 WORKDIR /home/microblog
 
@@ -8,9 +8,10 @@ COPY requirements requirements
 COPY requirements.txt microblog.py boot-test.sh ./
 
 RUN python -m venv .venv
-RUN  apk add sudo && \
-    apk add build-base=0.5-r2 --no-cache && \
-    /home/microblog/.venv/bin/python -m pip install --upgrade pip && \
+# RUN  apk add sudo && \
+#     apk add build-base=0.5-r2 --no-cache && \
+
+RUN /home/microblog/.venv/bin/python -m pip install --upgrade pip && \
     .venv/bin/pip3 install -r requirements/test.txt && \
     chmod +x boot-test.sh
 

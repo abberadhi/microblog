@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source .venv/bin/activate
+. .venv/bin/activate
 # while true; do
 #     flask db upgrade
 #     if [[ "$?" == "0" ]]; then
@@ -9,4 +9,4 @@ source .venv/bin/activate
 #     echo Upgrade command failed, retrying in 5 secs...
 #     sleep 5
 # done
-cd volume && sudo make test
+cd volume && make test
