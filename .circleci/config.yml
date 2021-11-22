@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     environment:
-      IMAGE_NAME: gufo19/microblog
+      IMAGE_NAME: ubuntu:latest
     docker:
-      - image: ubuntu:latest
+      - image: ubuntu-1604:202007-01
     steps:
       - checkout
       - setup_remote_docker
