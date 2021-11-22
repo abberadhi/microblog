@@ -9,4 +9,4 @@ source .venv/bin/activate
 #     echo Upgrade command failed, retrying in 5 secs...
 #     sleep 5
 # done
-cd volume && su-exec make test
+cd volume && sudo make test
