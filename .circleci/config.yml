@@ -1,37 +1,17 @@
-# version: 2
-# jobs:
-#   test:
-#     machine:
-#       image: ubuntu-2004:202008-01
-#     steps:
-#       - checkout
-#       - run:
-#           name: Run test
-#           command: docker-compose up test
-# workflows:
-#   version: 2
-#   build-master:
-#     jobs:
-#       - test
-
 version: 2
 jobs:
-  build:
-    environment:
-      IMAGE_NAME: gufo19/microblog
-    docker:
-      - image: circleci/buildpack-deps:stretch
+  test:
+    machine:
+      image: ubuntu-2004:202008-01
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.11
       - run:
-          name: start test
-          command: docker-compose up test
+          name: Run test
+          command: docker --version
 workflows:
   version: 2
   build-master:
     jobs:
-      - build:
-          filters:
-            branches:
-              only: master
+      - test
