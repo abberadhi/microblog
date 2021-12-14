@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Deploy latest docker image to appServer
           command: |
-            source .venv/bin/activate
+            . .venv/bin/activate
             ansible-playbook -vvv ansible/gather_vm_instances.ymlm # ansible/appServer.yml
 
 workflows:
