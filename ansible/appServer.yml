@@ -1,0 +1,23 @@
+---
+- hosts: appServer
+  become: true
+  become_method: sudo
+  remote_user: deploy
+  roles:
+    - docker
+
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+    - name: Create app container
+      docker_container:
+        name: microblog
+        image: "abberadhi/microblog:latest"
+        pull: true
+        restart: true
+        ports:
+          - "8000:5000"
+        env:
+          SECRET_KEY: secret
+          DATABASE_URL: mysql+pymysql://microblog:secret@{{ groups.database[0] }}:3306/microblog

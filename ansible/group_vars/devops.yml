@@ -1,0 +1,10 @@
+---
+root_password: $6$Yuc2ms68DEkE$7L1Y4HkYtLBfOlE3RZNmnpuEQl2VPxPNbA8DBBxmLbPjukTpwsItNykhmV/.aTjKcRwuV6geBT2VLmaLhefLR.
+
+server_user: deploy
+server_user_pass: $6$Yuc2ms68DEkE$7L1Y4HkYtLBfOlE3RZNmnpuEQl2VPxPNbA8DBBxmLbPjukTpwsItNykhmV/.aTjKcRwuV6geBT2VLmaLhefLR.
+server_user_groups:
+  - sudo
+
+pub_ssh_key_location:
+  - ~/.ssh/ansible.pub

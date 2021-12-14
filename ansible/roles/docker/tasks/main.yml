@@ -1,0 +1,43 @@
+---
+- name: Update the apt package
+  become: yes
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    force_apt_get: yes
+
+- name: prereqs
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gnupg-agent
+    - software-properties-common
+    - python3-pip
+    - virtualenv
+    - python3-setuptools
+
+- name: add GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Debian Stretch, official repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian buster stable
+    state: present
+
+- name: install docker
+  apt:
+    name: "docker-ce"
+    state: latest
+    update_cache: yes
+
+- name: install docker python
+  pip:
+    name: docker

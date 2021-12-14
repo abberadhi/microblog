@@ -1,0 +1,8 @@
+---
+- hosts: devops
+  remote_user: azureuser
+  become: yes
+  become_method: sudo
+  roles:
+    #- gather_vm_instances
+    - 10-first-minutes
