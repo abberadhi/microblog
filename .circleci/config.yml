@@ -28,18 +28,15 @@ jobs:
           name: Install dependencies
           command: |
             python3 -m venv .venv
-            .venv/bin/python -m pip install --upgrade pip
+            . .venv/bin/activate
+            .venv/bin/python3 -m pip install --upgrade pip
             .venv/bin/pip3 install -r requirements.txt
-            source .venv/bin/activate
-      - run:
-          name: Activate venv
-          command: echo "source .venv/bin/activate" >> $BASH_ENV
-
       - run:
           name: Deploy latest docker image to appServer
           command: |
             . .venv/bin/activate
-            ansible-playbook -vvv ansible/gather_vm_instances.ymlm # ansible/appServer.yml
+            which python3
+            ansible-playbook ansible/gather_vm_instances.yml ansible/appServer.yml
 
 workflows:
   version: 2
