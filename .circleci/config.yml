@@ -32,7 +32,7 @@ jobs:
             make install-deploy
       - run:
           name: Run appServer playbook
-          command: >
+          command: |
             . venv/bin/activate
             cd ansible
             ansible-playbook -vvv gather_vm_instances.yml appServer.yml
