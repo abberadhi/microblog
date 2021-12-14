@@ -30,6 +30,7 @@ jobs:
             python3 -m venv .venv
             .venv/bin/python -m pip install --upgrade pip
             .venv/bin/pip3 install -r requirements.txt
+            source .venv/bin/activate
       - run:
           name: Activate venv
           command: echo "source .venv/bin/activate" >> $BASH_ENV
