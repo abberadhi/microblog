@@ -46,3 +46,4 @@ Werkzeug==2.0.2
 wrapt==1.13.3
 WTForms==3.0.0
 zipp==3.6.0
+prometheus-flask-exporter==0.18.5
