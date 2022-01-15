@@ -8,6 +8,7 @@ COPY app app
 COPY migrations migrations
 COPY requirements requirements
 COPY requirements.txt microblog.py boot.sh ./
+COPY gunicorn_config.py gunicorn_config.py 
 
 RUN python3 -m venv .venv
 ENV FLASK_APP microblog.py
@@ -17,6 +18,8 @@ RUN apk add build-base=0.5-r2 --no-cache && \
     chown -R microblog:microblog ./
 
 USER microblog
+
+ENV prometheus_multiproc_dir /tmp
 
 EXPOSE 5000
 ENTRYPOINT ["./boot.sh"]
