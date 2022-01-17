@@ -29,7 +29,9 @@ jobs:
           command: |
             python3 -m venv .venv
             . .venv/bin/activate
+            make install
             make install-deploy
+            pip install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
       - run:
           name: Run appServer playbook
           command: |
