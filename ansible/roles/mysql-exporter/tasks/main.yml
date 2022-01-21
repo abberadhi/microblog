@@ -1,0 +1,20 @@
+---
+-   name: create new mysql user
+    shell: sudo docker exec -it dbserver mysql -uroot -p'secret' -e "CREATE USER 'exporter'@'%' IDENTIFIED BY 'secret' WITH MAX_USER_CONNECTIONS 3;GRANT PROCESS, REPLICATION CLIENT, SELECT ON *.* TO 'exporter'@'%';GRANT SELECT ON performance_schema.* TO 'exporter'@'%';"
+
+-   name: start and create mysqld-exporter
+    docker_container:
+      name: mysqld-exporter
+      image: prom/mysqld-exporter:latest
+      restart_policy: always
+      env:
+        DATA_SOURCE_NAME="exporter:secret@(localhost:3306)/"
+      command: [
+        '--collect.auto_increment.columns',
+        '--collect.binlog_size',
+        '--collect.engine_innodb_status',
+        '--collect.engine_tokudb_status',
+        '--collect.global_status'
+      ]
+      ports:
+        - "9104:9104"

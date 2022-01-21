@@ -1,0 +1,37 @@
+---
+- name: grafana-data volume
+  docker_volume:
+    name: grafana-data
+
+- name: get and start instance of grafana
+  docker_container:
+      name: grafana
+      image: grafana/grafana:8.2.4
+      restart_policy: unless-stopped
+      volumes:
+        - grafana-data:/var/lib/grafana
+        # - /tmp/grafana.ini:/etc/grafana/grafana.ini
+      networks:
+        - name: monitor
+      ports:
+        - "3000:3000"
+
+- name: update prometheus datasource
+  community.grafana.grafana_datasource:
+    url: http://0.0.0.0:3000
+    name: openshift_prometheus
+    ds_type: prometheus
+    ds_url: http://prometheus:9090
+    url_username: admin
+    url_password: admin
+    access: proxy
+    is_default: yes
+    with_credentials: yes
+
+- name: Import Grafana dashboard Zabbix
+  community.grafana.grafana_dashboard:
+    grafana_url: http://0.0.0.0:3000
+    url_username: admin
+    url_password: admin
+    dashboard_id: 1860
+    dashboard_revision: 22

@@ -3,6 +3,8 @@
   become: true
   become_method: sudo
   remote_user: deploy
+  roles:
+    - docker
 
   vars:
     ansible_python_interpreter: /usr/bin/python3
@@ -61,3 +63,17 @@
         name: nginx
         state: restarted
         enabled: yes
+
+    - name: get and start nginx exporter
+      docker_container:
+        name: nginx-exporter
+        image: nginx/nginx-prometheus-exporter:0.4.2
+        restart_policy: always
+        command: [
+          '--nginx.scrape-uri=https://whatsupson.tech/metrics',
+          '--nginx.retries=10',
+          '--nginx.ssl-verify=false',
+          '--web.telemetry-path=/prometheus',
+          ]
+        ports:
+          - "9113:9113"

@@ -1,12 +1,13 @@
 ---
-- hosts: database
+- hosts: monitoring
   become: true
   become_method: sudo
   remote_user: deploy
   roles:
     - docker
-    - mysql
-    - mysql-exporter
+    - node-exporter
+    - prometheus
+    - grafana
 
   vars:
     ansible_python_interpreter: /usr/bin/python3
