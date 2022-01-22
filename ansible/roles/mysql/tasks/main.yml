@@ -1,4 +1,8 @@
 ---
+-   name: docker network
+    docker_network:
+      name: monitor
+
 - name: Create db container
   docker_container:
     name: dbserver
@@ -11,3 +15,5 @@
       MYSQL_DATABASE: microblog
       MYSQL_USER: microblog
       MYSQL_PASSWORD: secret
+    networks:
+      - name: monitor

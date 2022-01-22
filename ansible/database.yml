@@ -4,8 +4,8 @@
   become_method: sudo
   remote_user: deploy
   roles:
-    - docker
-    - mysql
+    # - docker
+    # - mysql
     - mysql-exporter
 
   vars:

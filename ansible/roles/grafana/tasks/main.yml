@@ -1,20 +1,20 @@
 ---
-# - name: grafana-data volume
-#   docker_volume:
-#     name: grafana-data
+- name: grafana-data volume
+  docker_volume:
+    name: grafana-data
 
-# - name: get and start instance of grafana
-#   docker_container:
-#       name: grafana
-#       image: grafana/grafana:8.2.4
-#       restart_policy: unless-stopped
-#       volumes:
-#         - grafana-data:/var/lib/grafana
-#         # - /tmp/grafana.ini:/etc/grafana/grafana.ini
-#       networks:
-#         - name: monitor
-#       ports:
-#         - "3000:3000"
+- name: get and start instance of grafana
+  docker_container:
+      name: grafana
+      image: grafana/grafana:8.2.4
+      restart_policy: unless-stopped
+      volumes:
+        - grafana-data:/var/lib/grafana
+        # - /tmp/grafana.ini:/etc/grafana/grafana.ini
+      networks:
+        - name: monitor
+      ports:
+        - "3000:3000"
 
 - name: update prometheus datasource
   community.grafana.grafana_datasource:
@@ -68,7 +68,9 @@
     state: present
     commit_message: Updated by ansible
     overwrite: yes
-    path: https://raw.githubusercontent.com/percona/grafana-dashboards/pmm-1.x/dashboards/MySQL_Overview.json
+    # path: https://raw.githubusercontent.com/percona/grafana-dashboards/pmm-1.x/dashboards/MySQL_Overview.json
+    dashboard_id: 6239
+    dashboard_revision: 1
 
 - name: copy nginx dashboard
   copy:

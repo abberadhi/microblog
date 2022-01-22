@@ -4,9 +4,9 @@
   become_method: sudo
   remote_user: deploy
   roles:
-    # - docker
-    # - node-exporter
-    # - prometheus
+  #   - docker
+  #   - node-exporter
+  #   - prometheus
     - grafana
 
   vars:
