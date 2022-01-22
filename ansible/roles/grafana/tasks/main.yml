@@ -1,25 +1,37 @@
 ---
-- name: grafana-data volume
-  docker_volume:
-    name: grafana-data
+# - name: grafana-data volume
+#   docker_volume:
+#     name: grafana-data
 
-- name: get and start instance of grafana
-  docker_container:
-      name: grafana
-      image: grafana/grafana:8.2.4
-      restart_policy: unless-stopped
-      volumes:
-        - grafana-data:/var/lib/grafana
-        # - /tmp/grafana.ini:/etc/grafana/grafana.ini
-      networks:
-        - name: monitor
-      ports:
-        - "3000:3000"
+# - name: get and start instance of grafana
+#   docker_container:
+#       name: grafana
+#       image: grafana/grafana:8.2.4
+#       restart_policy: unless-stopped
+#       volumes:
+#         - grafana-data:/var/lib/grafana
+#         # - /tmp/grafana.ini:/etc/grafana/grafana.ini
+#       networks:
+#         - name: monitor
+#       ports:
+#         - "3000:3000"
 
 - name: update prometheus datasource
   community.grafana.grafana_datasource:
     url: http://0.0.0.0:3000
-    name: openshift_prometheus
+    name: Prometheus
+    ds_type: prometheus
+    ds_url: http://prometheus:9090
+    url_username: admin
+    url_password: admin
+    access: proxy
+    is_default: yes
+    with_credentials: yes
+  
+- name: update prometheus datasource
+  community.grafana.grafana_datasource:
+    url: http://0.0.0.0:3000
+    name: Metrics
     ds_type: prometheus
     ds_url: http://prometheus:9090
     url_username: admin
@@ -28,10 +40,47 @@
     is_default: yes
     with_credentials: yes
 
-- name: Import Grafana dashboard Zabbix
+- name: Import node exporter full dashboard
   community.grafana.grafana_dashboard:
     grafana_url: http://0.0.0.0:3000
     url_username: admin
     url_password: admin
+    overwrite: yes
     dashboard_id: 1860
     dashboard_revision: 22
+
+- name: import flaskdash
+  community.grafana.grafana_dashboard:
+    grafana_url: http://0.0.0.0:3000
+    url_username: admin
+    url_password: admin
+    state: present
+    commit_message: Updated by ansible
+    overwrite: yes
+    dashboard_id: 9688
+    dashboard_revision: 1
+
+- name: import MySQL_Overview dashboard
+  community.grafana.grafana_dashboard:
+    grafana_url: http://0.0.0.0:3000
+    url_username: admin
+    url_password: admin
+    state: present
+    commit_message: Updated by ansible
+    overwrite: yes
+    path: https://raw.githubusercontent.com/percona/grafana-dashboards/pmm-1.x/dashboards/MySQL_Overview.json
+
+- name: copy nginx dashboard
+  copy:
+    src: ../templates/nginx.json
+    dest: /tmp/nginx.json
+
+- name: import nginx dashboard
+  community.grafana.grafana_dashboard:
+    grafana_url: http://0.0.0.0:3000
+    url_username: admin
+    url_password: admin
+    state: present
+    commit_message: Updated by ansible
+    overwrite: yes
+    path: /tmp/nginx.json
