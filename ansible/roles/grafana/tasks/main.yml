@@ -27,7 +27,7 @@
     access: proxy
     is_default: yes
     with_credentials: yes
-  
+
 - name: update prometheus datasource
   community.grafana.grafana_datasource:
     url: http://0.0.0.0:3000
@@ -68,9 +68,8 @@
     state: present
     commit_message: Updated by ansible
     overwrite: yes
-    # path: https://raw.githubusercontent.com/percona/grafana-dashboards/pmm-1.x/dashboards/MySQL_Overview.json
-    dashboard_id: 6239
-    dashboard_revision: 1
+    path: https://abbe.dev/mysql_rev1.json
+
 
 - name: copy nginx dashboard
   copy:
