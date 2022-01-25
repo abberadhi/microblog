@@ -3,11 +3,11 @@
   docker_volume:
     name: grafana-data
 
-- name: copy ini file
-  template:
-    src: grafana.ini
-    dest: /tmp/grafana.ini
-    force: yes
+# - name: copy ini file
+#   template:
+#     src: grafana.ini
+#     dest: /tmp/grafana.ini
+#     force: yes
 
 - name: get and start instance of grafana
   docker_container:
@@ -16,7 +16,7 @@
       restart_policy: unless-stopped
       volumes:
         - grafana-data:/var/lib/grafana
-        - /tmp/grafana.ini:/etc/grafana/grafana.ini
+        # - /tmp/grafana.ini:/etc/grafana/grafana.ini
       networks:
         - name: monitor
       ports:

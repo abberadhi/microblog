@@ -28,9 +28,9 @@
       command: service nginx stop
       when: not letsencrypt_cert.stat.exists
 
-    - name: Generate new certificate if one doesn't exist.
-      shell: "certbot certonly --standalone --noninteractive --expand --agree-tos --email abra19@student.bth.se -d whatsupson.tech -d www.whatsupson.tech"
-      when: not letsencrypt_cert.stat.exists
+    # - name: Generate new certificate if one doesn't exist.
+    #   shell: "certbot certonly --standalone --noninteractive --expand --agree-tos --email abra19@student.bth.se -d whatsupson.tech -d www.whatsupson.tech"
+    #   when: not letsencrypt_cert.stat.exists
 
     - name: Remove default conf
       file:
