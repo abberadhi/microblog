@@ -20,7 +20,7 @@ jobs:
           command: |
             docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
       - snyk/scan:
-          docker-image-name: $IMAGE_NAME
+          docker-image-name: abberadhi/microblog
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
