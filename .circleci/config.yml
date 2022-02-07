@@ -16,13 +16,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Build docker image
-        command: |
-          docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
+          name: Build docker image
+          command: |
+            docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
       - snyk/scan:
-        docker-image-name: $IMAGE_NAME
-        command: |
-          docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
+          docker-image-name: $IMAGE_NAME
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
