@@ -16,9 +16,16 @@ jobs:
     steps:
       - checkout
       - run:
+        name: Build docker image
+        command: |
+          docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
+      - snyk/scan:
+        docker-image-name: $IMAGE_NAME
+        command: |
+          docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
+      - run:
           name: Publish Docker Image to Docker Hub
           command: |
-            docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push abberadhi/microblog:latest
   deploy-latest:
@@ -64,6 +71,7 @@ workflows:
       - publish-latest:
           requires:
             - test
+            - snyk
       - deploy-latest:
           requires:
             - publish-latest
