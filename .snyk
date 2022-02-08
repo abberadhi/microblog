@@ -1,3 +1,4 @@
+version: v1.14.0
 Ignore:
   SNYK-ALPINE315-UTILLINUX-2393739:
     - '*':
