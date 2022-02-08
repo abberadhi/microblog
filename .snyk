@@ -1,5 +1,5 @@
 version: v1.14.0
-Ignore:
+ignore:
   SNYK-ALPINE315-UTILLINUX-2393739:
     - '*':
       reason: i need to finish kmom
