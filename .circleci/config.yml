@@ -21,6 +21,7 @@ jobs:
             docker build -t abberadhi/microblog -f docker/Dockerfile_prod .
       - snyk/scan:
           docker-image-name: abberadhi/microblog
+          additional-arguments: "--policy-path=.snyk"
       - run:
           name: Publish Docker Image to Docker Hub
           command: |

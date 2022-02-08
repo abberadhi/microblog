@@ -1,0 +1,17 @@
+Ignore:
+  SNYK-ALPINE315-UTILLINUX-2393739:
+    - '*':
+      reason: i need to finish kmom
+      expires: 2023-06-01T00:00:00.000Z
+  SNYK-ALPINE315-UTILLINUX-2393741:
+    - '*':
+      reason: ima thug
+      expires: 2023-06-01T00:00:00.000Z
+  SNYK-ALPINE315-EXPAT-2393733:
+    - '*':
+      reason: what is expires field?
+      expires: 2023-06-01T00:00:00.000Z
+  SNYK-ALPINE315-EXPAT-2393735:
+    - '*':
+      reason: pretend they dont exist
+      expires: 2023-06-01T00:00:00.000Z
