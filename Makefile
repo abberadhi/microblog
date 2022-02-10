@@ -219,5 +219,5 @@ install-deploy:
 
 ## target: bandit-check                    - Run tests and display detailed code coverage with html
 .PHONY: bandit-check
-test-html:
+bandit-check:
 	bandit -r app
