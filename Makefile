@@ -153,6 +153,7 @@ exec-tests: test-unit test-integration
 test: validate exec-tests
 	${py} -m coverage report  --rcfile=.coveragerc
 	$(MAKE) clean-cov
+	$(MAKE) bandit-check
 
 
 
@@ -215,3 +216,8 @@ install-test:
 install-deploy:
 	${pip} install -r requirements/deploy.txt
 	cd ansible && ansible-galaxy install -r requirements.yml
+
+## target: bandit-check                    - Run tests and display detailed code coverage with html
+.PHONY: bandit-check
+test-html:
+	bandit -r app
