@@ -16,6 +16,7 @@ http {
       server_name {{ domain_name }} www.{{ domain_name }};
 
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+      add_header Content-Security-Policy "default-src 'self' whatsupson.tech gravatar.com; font-src * ; img-src * ; media-src * ; script-src *.cloudflare.com ; style-src *.cloudflare.com ";
       server_tokens off;
 
       location / {
@@ -39,6 +40,7 @@ http {
 
       server_tokens off;
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+      add_header Content-Security-Policy "default-src 'self' whatsupson.tech gravatar.com; font-src * ; img-src * ; media-src * ; script-src *.cloudflare.com ; style-src *.cloudflare.com ";
 
       location / {
          return 301 https://{{ domain_name }}$request_uri;
@@ -56,6 +58,7 @@ http {
 
       server_tokens off;
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+      add_header Content-Security-Policy "default-src 'self' whatsupson.tech gravatar.com; font-src * ; img-src * ; media-src * ; script-src *.cloudflare.com ; style-src *.cloudflare.com ";
 
       location /grafana/ {
          proxy_pass http://{{ groups['monitoring'][0] }}:3000/;
