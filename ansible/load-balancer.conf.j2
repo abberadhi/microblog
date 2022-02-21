@@ -17,6 +17,7 @@ http {
 
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
       add_header Content-Security-Policy "default-src 'self' whatsupson.tech https://gravatar.com; font-src cdnjs.cloudflare.com img-src https://gravatar.com ; media-src gravatar.com ; script-src https://gravatar.com cdnjs.cloudflare.com ; script-src https://gravatar.com cdnjs.cloudflare.com " always;
+      add_header X-Frame-Options "SAMEORIGIN";
       server_tokens off;
 
       location / {
@@ -41,6 +42,7 @@ http {
       server_tokens off;
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
       add_header Content-Security-Policy "default-src 'self' whatsupson.tech https://gravatar.com; font-src cdnjs.cloudflare.com img-src https://gravatar.com ; media-src gravatar.com ; script-src https://gravatar.com cdnjs.cloudflare.com ; script-src https://gravatar.com cdnjs.cloudflare.com " always;
+      add_header X-Frame-Options "SAMEORIGIN";
 
       location / {
          return 301 https://{{ domain_name }}$request_uri;
@@ -59,6 +61,7 @@ http {
       server_tokens off;
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
       add_header Content-Security-Policy "default-src 'self' whatsupson.tech https://gravatar.com; font-src cdnjs.cloudflare.com img-src https://gravatar.com ; media-src gravatar.com ; script-src https://gravatar.com cdnjs.cloudflare.com ; script-src https://gravatar.com cdnjs.cloudflare.com " always;
+      add_header X-Frame-Options "SAMEORIGIN";
 
       location /grafana/ {
          proxy_pass http://{{ groups['monitoring'][0] }}:3000/;
