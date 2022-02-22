@@ -16,3 +16,7 @@ ignore:
     - '*':
       reason: pretend they dont exist
       expires: 2023-06-01T00:00:00.000Z
+  SNYK-ALPINE315-UTILLINUX-2401805:
+      - '*':
+      reason: :)
+      expires: 2023-06-01T00:00:00.000Z
