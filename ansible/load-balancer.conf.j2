@@ -16,7 +16,7 @@ http {
       server_name {{ domain_name }} www.{{ domain_name }};
 
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-      add_header Content-Security-Policy "default-src 'self' whatsupson.tech https://gravatar.com; font-src cdnjs.cloudflare.com img-src https://www.gravatar.com ; media-src gravatar.com ; script-src https://gravatar.com cdnjs.cloudflare.com ; script-src https://gravatar.com cdnjs.cloudflare.com " always;
+      add_header Content-Security-Policy "default-src 'self' https://gravatar.com; script-src 'report-sample' 'self' https://gravatar.com *.cloudflare.com; style-src 'report-sample' 'self' https://gravatar.com *.cloudflare.com; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self' *.cloudflare.com; frame-src 'self'; img-src 'self' https://www.gravatar.com; manifest-src 'self' gravatar.com; media-src 'self'; worker-src 'none'" always; font-src 'self' *.cloudflare.com 'unsafe-inline'; frame-src 'self' 'unsafe-inline'; img-src 'self' 'unsafe-inline' https://www.gravatar.com; manifest-src 'self' gravatar.com 'unsafe-inline'; media-src 'self' 'unsafe-inline'; worker-src 'none' 'unsafe-inline'" always;
       add_header X-Frame-Options "SAMEORIGIN";
       add_header X-Content-Type-Options nosniff;
       server_tokens off;
@@ -42,7 +42,10 @@ http {
 
       server_tokens off;
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-      add_header Content-Security-Policy "default-src 'self' whatsupson.tech https://gravatar.com; font-src cdnjs.cloudflare.com img-src https://www.gravatar.com ; media-src gravatar.com ; script-src https://gravatar.com cdnjs.cloudflare.com ; script-src https://gravatar.com cdnjs.cloudflare.com " always;
+
+      add_header Content-Security-Policy "default-src 'self' https://gravatar.com; script-src 'report-sample' 'self' https://gravatar.com *.cloudflare.com; style-src 'report-sample' 'self' https://gravatar.com *.cloudflare.com; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self' *.cloudflare.com; frame-src 'self'; img-src 'self' https://www.gravatar.com; manifest-src 'self' gravatar.com; media-src 'self'; worker-src 'none'" always; font-src 'self' *.cloudflare.com 'unsafe-inline'; frame-src 'self' 'unsafe-inline'; img-src 'self' 'unsafe-inline' https://www.gravatar.com; manifest-src 'self' gravatar.com 'unsafe-inline'; media-src 'self' 'unsafe-inline'; worker-src 'none' 'unsafe-inline'" always;
+
+
       add_header X-Frame-Options "SAMEORIGIN";
       add_header X-Content-Type-Options nosniff;
 
@@ -63,7 +66,7 @@ http {
 
       server_tokens off;
       add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-      add_header Content-Security-Policy "default-src 'self' whatsupson.tech https://gravatar.com; font-src cdnjs.cloudflare.com img-src https://www.gravatar.com ; media-src gravatar.com ; script-src https://gravatar.com cdnjs.cloudflare.com ; script-src https://gravatar.com cdnjs.cloudflare.com " always;
+      add_header Content-Security-Policy "default-src 'self' https://gravatar.com; script-src 'report-sample' 'self' https://gravatar.com *.cloudflare.com; style-src 'report-sample' 'self' https://gravatar.com *.cloudflare.com; object-src 'none'; base-uri 'self'; connect-src 'self'; font-src 'self' *.cloudflare.com; frame-src 'self'; img-src 'self' https://www.gravatar.com; manifest-src 'self' gravatar.com; media-src 'self'; worker-src 'none'" always; font-src 'self' *.cloudflare.com 'unsafe-inline'; frame-src 'self' 'unsafe-inline'; img-src 'self' 'unsafe-inline' https://www.gravatar.com; manifest-src 'self' gravatar.com 'unsafe-inline'; media-src 'self' 'unsafe-inline'; worker-src 'none' 'unsafe-inline'" always;
       add_header X-Frame-Options "SAMEORIGIN";
       add_header X-Content-Type-Options nosniff;
 
