@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microblog
+spec:
+  selector:
+    matchLabels:
+      app: microblog
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: microblog
+    spec:
+      containers:
+      - image: abberadhi/microblog:latest
+        imagePullPolicy: Always
+        name: microblog
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        ports:
+        - containerPort: 5000
+        env:
+          - name: SECRET_KEY
+            value: c065e2bee1a143a7be1b0321a88bfe0c
+          - name: DATABASE_URL
+            value: mysql+pymysql://microblog:password@mysql:3306/microblog
